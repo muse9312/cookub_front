@@ -118,7 +118,7 @@ function Navigation() {
           {BtnHendler()}
         </div>
 
-        <li className={style.list_item}><Link className={style.nav_item} to='/about' element={<About />}>ABOUT</Link></li>
+        <li className={style.list_item}><Link className={style.nav_item} to='/about' element={<About />}>어바웃</Link></li>
         <li className={style.list_item}><Link className={style.nav_item} to='/board' element={<Board />}>PUBLIC RECIPE</Link></li>
         <li className={style.list_item}><Link className={style.nav_item} to={tokenFix()} element={<MyPage />}>REPOSITORY</Link></li>
         <div>
