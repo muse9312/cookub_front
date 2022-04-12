@@ -70,13 +70,13 @@ function Navigation() {
     console.log(imgUrl + profileFile);
 
     if (kakao == null && token == null) {
-      return <button className={style.login_button} onClick={SendLogin}>Login</button>;
+      return <button className={style.login_button} onClick={SendLogin}>로그인</button>;
     } else {
       return <div>
         <div  >
           {cookies.get('profile')
-            ?<img className="cat" src={imgUrl + profileFile} alt="profile"/>
-            :<img className="cat" src={noImg} alt="profile"/>
+            ? <img className="cat" src={imgUrl + profileFile} alt="profile" />
+            : <img className="cat" src={noImg} alt="profile" />
           }
         </div>
         <h2>
@@ -98,10 +98,10 @@ function Navigation() {
     }
   }
 
-  const tokenFix =()=>{
-    if(token != null){
+  const tokenFix = () => {
+    if (token != null) {
       return "/mypage"
-    }else{
+    } else {
       return "/login"
     }
   }
