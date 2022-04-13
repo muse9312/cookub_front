@@ -9,7 +9,7 @@ on:
 env:
   DOCKER_IMAGE: ghcr.io/${{ github.actor }}/front
   VERSION: ${{ github.sha }}
-  NAME: front
+  NAME: go_cicd
 
 jobs:
   # 빌드 Job
@@ -60,4 +60,4 @@ jobs:
       - name: Docker run
         run: |
           docker stop ${{ env.NAME }} && docker rm ${{ env.NAME }} && docker rmi ${{ env.DOCKER_IMAGE }}:latest
-          docker run -d -p 3000:3000 --name front --restart always ${{ env.DOCKER_IMAGE }}:latest
+          docker run -d -p 3000:3000 --name go_cicd --restart always ${{ env.DOCKER_IMAGE }}:latest
