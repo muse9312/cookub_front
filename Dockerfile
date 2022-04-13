@@ -1,12 +1,13 @@
-FROM node:16.14.2-alpine3.15
-ENV NODE_ENV=production
+FROM node:16.13.1-alpine3.15
 
 WORKDIR /app
 
 COPY ["package.json", "package-lock.json*", "./"]
 
-RUN npm install --force --production
+RUN npm install
 
 COPY . .
+
+
 
 CMD [ "npm", "start" ]

@@ -33,7 +33,7 @@ function EudModal({ setOpenModal }) {
 
 
         axios
-            .post(`http://localhost:8080/profile/degree/${cookies.get('userId')}`, JSON.stringify(data), {
+            .post(`http://${process.env.REACT_APP_HOST}/profile/degree/${cookies.get('userId')}`, JSON.stringify(data), {
                 headers: {
                     "Content-Type": `application/json`,
                 },
@@ -41,12 +41,77 @@ function EudModal({ setOpenModal }) {
             .then((res) => {
                 console.log(res);
                 setOpenModal(false);
-
-                window.location.reload()
+                // window.location = '/login';
             });
 
 
 
+
+
+
+        // // 프로필
+        // const file = document.querySelector('[name=file]').files[0];
+        // console.log(document.querySelector('[name=file]').value);
+        // // 이메일
+        // const email = document.querySelector('[name=useremail]').value;
+        // console.log(document.querySelector('[name=useremail]').value);
+        // // 페스워드
+        // const password = document.querySelector('[name=password]').value;
+        // console.log(document.querySelector('[name=password]').value);
+        // // 이름
+        // const username = document.querySelector('[name=username]').value;
+        // console.log(document.querySelector('[name=username]').value);
+        // // 전화번호
+        // const tel = document.querySelector('[name=tel]').value;
+        // console.log(document.querySelector('[name=tel]').value);
+        // // 생일
+        // const birth = document.querySelector('[name=birth]').value;
+        // console.log(document.querySelector('[name=birth]').value);
+        // // 전문분야
+        // const field = document.querySelector('[name=field]').value;
+        // console.log(document.querySelector('[name=field]').value);
+        // // 거주국가
+        // const workNation = document.querySelector('[name=work_nation]').value;
+        // console.log(document.querySelector('[name=work_nation]').value);
+        // // 수준
+        // const grade = document.querySelector('[name=grade]').value;
+        // console.log(document.querySelector('[name=grade]').value);
+        // // 경력
+        // const career = document.querySelector('[name=career]').value;
+        // console.log(document.querySelector('[name=career]').value);
+        // // 현재 근무지
+        // const workPlace = document.querySelector('[name=work_place]').value;
+        // console.log(document.querySelector('[name=work_place]').value);
+
+        // const formData = new FormData();
+
+        // formData.append('file', file);
+        // formData.append('email', email);
+        // formData.append('password', password);
+        // formData.append('username', username);
+        // formData.append('tel', tel);
+        // formData.append('birth', birth);
+        // formData.append('field', field);
+        // formData.append('workNation', workNation);
+        // formData.append('grade', grade);
+        // formData.append('career', career);
+        // formData.append('workPlace', workPlace);
+        // console.log(formData);
+
+
+        // axios({
+        //   url: 'http://${process.env.REACT_APP_HOST}/user/auth/signUp',
+        //   headers: {
+        //     'content-type': 'multipart/form-data'
+        //   },
+        //   method: 'post',
+        //   data: formData
+        // }).then(function (res) {
+        //   console.log(res.data);
+
+        //   // window.location = '/login';
+
+        // })
     }
     return (
 
