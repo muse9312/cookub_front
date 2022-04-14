@@ -33,9 +33,10 @@ jobs:
        # Github Repository Secrets를 통해 환경 변수 파일을 생성
       - name: Generate Environment Variables File for Production
         run: |
-          echo "REACT_APP_AWS_ACCESS_KEY=$REACT_APP_AWS_ACCESS_KEY" >> .env.production
-          echo "REACT_APP_AWS_SECRET_ACCESS_KEY=$REACT_APP_AWS_SECRET_ACCESS_KEY" >> .env.production
-          echo "REACT_APP_HOST=$REACT_APP_HOST" >> .env.production
+          touch .env
+          echo "REACT_APP_AWS_ACCESS_KEY=$REACT_APP_AWS_ACCESS_KEY" >> .env
+          echo "REACT_APP_AWS_SECRET_ACCESS_KEY=$REACT_APP_AWS_SECRET_ACCESS_KEY" >> .env
+          echo "REACT_APP_HOST=$REACT_APP_HOST" >> .env
         env:
           REACT_APP_AWS_ACCESS_KEY: ${{ secrets.REACT_APP_AWS_ACCESS_KEY }}
           REACT_APP_AWS_SECRET_ACCESS_KEY: ${{ secrets.REACT_APP_AWS_SECRET_ACCESS_KEY }}
