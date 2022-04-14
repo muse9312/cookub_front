@@ -40,7 +40,6 @@ jobs:
           echo REACT_APP_AWS_ACCESS_KEY=$REACT_APP_AWS_ACCESS_KEY >> .env
           echo REACT_APP_AWS_SECRET_ACCESS_KEY=$REACT_APP_AWS_SECRET_ACCESS_KEY >> .env
           echo REACT_APP_HOST=$REACT_APP_HOST >> .env
-          env-cmd -f .env react-script build
         env:
           REACT_APP_AWS_ACCESS_KEY: ${{ secrets.REACT_APP_AWS_ACCESS_KEY }}
           REACT_APP_AWS_SECRET_ACCESS_KEY: ${{ secrets.REACT_APP_AWS_SECRET_ACCESS_KEY }}
