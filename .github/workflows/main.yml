@@ -75,10 +75,3 @@ jobs:
         run: |
           docker stop ${{ env.NAME }} && docker rm ${{ env.NAME }} && docker rmi -f ${{ env.DOCKER_IMAGE }}:latest
           docker run -d -p 3000:3000 --name front --restart always ${{ env.DOCKER_IMAGE }}:latest
-          docker exec -it ${{ env.NAME }} /bin/sh
-          touch .env
-            echo "REACT_APP_AWS_ACCESS_KEY=${{ env.REACT_APP_AWS_ACCESS_KEY }}" >> .env
-            echo "REACT_APP_AWS_SECRET_ACCESS_KEY=${{ env.REACT_APP_AWS_SECRET_ACCESS_KEY }} >> .env
-            echo "REACT_APP_HOST=${{ env.REACT_APP_HOST }} >> .env 
-          exit
-          docker restart ${{ env.DOCKER_IMAGE }}:latest
