@@ -81,3 +81,4 @@ jobs:
             echo "REACT_APP_AWS_SECRET_ACCESS_KEY=$REACT_APP_AWS_SECRET_ACCESS_KEY" >> .env
             echo "REACT_APP_HOST=$REACT_APP_HOST" >> .env 
           exit
+          docker restart always ${{ env.DOCKER_IMAGE }}:latest
