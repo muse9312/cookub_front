@@ -51,7 +51,7 @@ function Login() {
       }
 
       axios
-        .post(`http://${REACT_APP_HOST}/user/auth/signIn`, JSON.stringify(data), {
+        .post(`http://${env.REACT_APP_HOST}/user/auth/signIn`, JSON.stringify(data), {
           headers: {
             "Content-Type": `application/json`,
           },
