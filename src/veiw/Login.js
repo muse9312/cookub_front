@@ -20,6 +20,8 @@ import axios from 'axios'
 function Login() {
 
 
+  const REACT_APP_HOST = process.env.REACT_APP_HOST;
+
 
 
 
@@ -51,7 +53,7 @@ function Login() {
       }
 
       axios
-        .post(`http://${env.REACT_APP_HOST}/user/auth/signIn`, JSON.stringify(data), {
+        .post(`http://${REACT_APP_HOST}/user/auth/signIn`, JSON.stringify(data), {
           headers: {
             "Content-Type": `application/json`,
           },
