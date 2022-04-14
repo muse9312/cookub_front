@@ -5,7 +5,7 @@ WORKDIR /app
 
 COPY ["package.json", "package-lock.json*", "./"]
 
-RUN npm install --force --production
+RUN [touch .env,npm install --force --production]
 
 COPY . .
 
