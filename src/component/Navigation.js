@@ -70,7 +70,7 @@ function Navigation() {
     console.log(imgUrl + profileFile);
 
     if (kakao == null && token == null) {
-      return <button className={style.login_button} onClick={SendLogin}>로그인</button>;
+      return <button className={style.login_button} onClick={SendLogin}>login</button>;
     } else {
       return <div>
         <div  >
