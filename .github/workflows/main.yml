@@ -73,4 +73,4 @@ jobs:
       - name: Docker run
         run: |
           docker stop ${{ env.NAME }} && docker rm ${{ env.NAME }} && docker rmi -f ${{ env.DOCKER_IMAGE }}:latest
-          docker run -d -e REACT_APP_HOST=${{ secrets.REACT_APP_HOST }}  -p 3000:3000 --name front --restart always ${{ env.DOCKER_IMAGE }}:latest
+          docker run -d -p 3000:3000 --name front --restart always ${{ env.DOCKER_IMAGE }}:latest
