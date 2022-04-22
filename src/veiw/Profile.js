@@ -58,7 +58,6 @@ const Profile = () => {
         window.location.href = "/userinfo"
     }
 
-
     useEffect(() => {
         const userId = cookies.get('userId')
         const api = `http://${process.env.REACT_APP_HOST}/profile/${userId}`;
