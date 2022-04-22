@@ -177,7 +177,7 @@ const Profile = () => {
                                     <CloseIcon fontSize="small" onClick={() => {
                                         const degreeId = data.degreeId
                                         console.log(degreeId);
-                                        const api = `http://localhost:8080/profile/degree/delete/${degreeId}`;
+                                        const api = `http://${process.env.REACT_APP_HOST}/profile/degree/delete/${degreeId}`;
                                         axios.delete(api)
                                             .then((res) => {
                                                 console.log(res);

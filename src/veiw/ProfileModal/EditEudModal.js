@@ -32,7 +32,7 @@ function EditEudModal({ seteditOpenModal }, ResData) {
 
 
         axios
-            .post(`http://localhost:8080/profile/degree/${cookies.get('userId')}`, JSON.stringify(data), {
+            .post(`http://${process.env.REACT_APP_HOST}/profile/degree/${cookies.get('userId')}`, JSON.stringify(data), {
                 headers: {
                     "Content-Type": `application/json`,
                 },
