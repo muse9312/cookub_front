@@ -26,7 +26,6 @@ function EditEudModal({ seteditOpenModal }, ResData) {
             "graduation": document.querySelector('[name=Grduation]').value,
 
 
-
         }
         console.log(data);
 
