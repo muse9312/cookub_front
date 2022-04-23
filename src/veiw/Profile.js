@@ -237,7 +237,17 @@ const Profile = () => {
                                 </Controls.ActionButton>
                                 <Controls.ActionButton
                                     color="secondary">
-                                    <CloseIcon fontSize="small" />
+                                    <CloseIcon fontSize="small" onClick={() => {
+                                        const AwardsCareer = data.awardsCareer
+                                        console.log(AwardsCareer);
+                                        const api = `http://${process.env.REACT_APP_HOST}/profile/awd/del/${AwardsCareer}`;
+                                        axios.delete(api)
+                                            .then((res) => {
+                                                console.log(res);
+
+                                                window.location.reload()
+                                            })
+                                    }} />
                                 </Controls.ActionButton>
                             </TableCell>
                         </TableRow>)

@@ -36,7 +36,7 @@ function AwdModal({ setOpenModal }) {
 
 
         axios
-            .post(`http://${process.env.REACT_APP_HOST}/profile/awd/${cookies.get('userId')}`, JSON.stringify(data), {
+            .post(`http://${process.env.REACT_APP_HOST}/profile/awd/post/${cookies.get('userId')}`, JSON.stringify(data), {
                 headers: {
                     "Content-Type": `application/json`,
                 },
