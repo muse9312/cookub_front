@@ -10,9 +10,9 @@ env:
   DOCKER_IMAGE: ghcr.io/${{ github.actor }}/front
   VERSION: ${{ github.sha }}
   NAME: front
-  # REACT_APP_AWS_ACCESS_KEY: ${{ secrets.REACT_APP_AWS_ACCESS_KEY }}
-  # REACT_APP_AWS_SECRET_ACCESS_KEY: ${{ secrets.REACT_APP_AWS_SECRET_ACCESS_KEY }}
-  # REACT_APP_HOST: ${{ secrets.REACT_APP_HOST }}
+  REACT_APP_AWS_ACCESS_KEY: ${{ secrets.REACT_APP_AWS_ACCESS_KEY }}
+  REACT_APP_AWS_SECRET_ACCESS_KEY: ${{ secrets.REACT_APP_AWS_SECRET_ACCESS_KEY }}
+  REACT_APP_HOST: ${{ secrets.REACT_APP_HOST }}
 
 
 jobs:
@@ -35,15 +35,15 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-buildx-
        # Github Repository Secrets를 통해 환경 변수 파일을 생성
-      # - name: Generate Environment Variables File for Production
-      #   run: |
-      #     echo REACT_APP_AWS_ACCESS_KEY=$REACT_APP_AWS_ACCESS_KEY >> .env
-      #     echo REACT_APP_AWS_SECRET_ACCESS_KEY=$REACT_APP_AWS_SECRET_ACCESS_KEY >> .env
-      #     echo REACT_APP_HOST=$REACT_APP_HOST >> .env
-      #   env:
-      #     REACT_APP_AWS_ACCESS_KEY: ${{ secrets.REACT_APP_AWS_ACCESS_KEY }}
-      #     REACT_APP_AWS_SECRET_ACCESS_KEY: ${{ secrets.REACT_APP_AWS_SECRET_ACCESS_KEY }}
-      #     REACT_APP_HOST: ${{ secrets.REACT_APP_HOST }}
+      - name: Generate Environment Variables File for Production
+        run: |
+          echo REACT_APP_AWS_ACCESS_KEY=$REACT_APP_AWS_ACCESS_KEY >> .env
+          echo REACT_APP_AWS_SECRET_ACCESS_KEY=$REACT_APP_AWS_SECRET_ACCESS_KEY >> .env
+          echo REACT_APP_HOST=$REACT_APP_HOST >> .env
+        env:
+          REACT_APP_AWS_ACCESS_KEY: ${{ secrets.REACT_APP_AWS_ACCESS_KEY }}
+          REACT_APP_AWS_SECRET_ACCESS_KEY: ${{ secrets.REACT_APP_AWS_SECRET_ACCESS_KEY }}
+          REACT_APP_HOST: ${{ secrets.REACT_APP_HOST }}
       # GitHub 컨테이너 레지스트리에 로그인 후 빌드 & 푸시
       - name: Login to ghcr
         uses: docker/login-action@v1
@@ -73,4 +73,4 @@ jobs:
       - name: Docker run
         run: |
           docker stop ${{ env.NAME }} && docker rm ${{ env.NAME }} && docker rmi -f ${{ env.DOCKER_IMAGE }}:latest
-          docker run -d -e  -p 3000:3000 --name front --restart always ${{ env.DOCKER_IMAGE }}:latest
+          docker run -d -e REACT_APP_HOST=${{ secrets.REACT_APP_HOST }}  -p 3000:3000 --name front --restart always ${{ env.DOCKER_IMAGE }}:latest
