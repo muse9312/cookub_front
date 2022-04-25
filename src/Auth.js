@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 const Auth = () => {
     const REST_API_KEY = "a2b02f5b67bf10d12472ebb1c0541618";
-    const REDIRECT_URI = `http://34.207.244.32/oauth/kakao/callback`;
+    const REDIRECT_URI = `http://ec2-34-207-244-32.compute-1.amazonaws.com:3000/oauth/kakao/callback`;
     const CLIENT_SECRET = "NbjkLR8u5srLPORxXYAw3OT2RvjcOCSa";
 
     // calllback으로 받은 인가코드
