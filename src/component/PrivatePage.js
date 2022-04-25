@@ -5,6 +5,8 @@ import noImg from '../assets/img/noimg.PNG';
 import style from '../veiw/MyPage.module.css';
 import LoadingBar from "./LodingBar";
 import Logo from "../assets/img/CookubLogo.png"
+import Cookies from 'universal-cookie';
+
 
 const PrivatePage = ()=>{
   const {key}  = useParams(); //url 의 key 변수에 저장.
@@ -12,6 +14,8 @@ const PrivatePage = ()=>{
   const [dataTest, setDataTest] = useState([]);
   const [anySwitch, setAnySwitch] = useState(false)
   const [userName, setUserName] = useState();
+  const cookie = new Cookies();
+  const token = cookie.get('token');
 
   const s3URL = "https://s3-bucket-react-file-upload-test-5jo.s3.us-east-2.amazonaws.com/upload/" // --> 리사이징 안된 이미지 저장하는곳
 
@@ -43,7 +47,11 @@ const PrivatePage = ()=>{
     return string
   }
 
-
+  function BtnProfile(e) {
+    e.preventDefault();
+    window.sessionStorage.setItem("id", userName);
+    window.location.href = "/Publicprofile";
+  }
 
     return(
     <>
@@ -54,7 +62,9 @@ const PrivatePage = ()=>{
             <a className="imgbtn" href={'/'}>
               <img src={Logo} alt="COOKUB"/>
             </a>
-            {userName?<h1 className={ style.private_header_title}>{`${userName}님의 레시피 저장소 입니다.`}</h1>
+            {userName
+            ?<div className={style.private_header_title} onClick={BtnProfile}><h1 className={style.letsProfile}>{`${userName}님의 레시피 저장소입니다.`}</h1></div>
+            // ?<h1 className={ style.private_header_title}>{`${userName}님의 레시피 저장소 입니다.`}</h1>
             :<h1 className={ style.private_header_title}>안녕하세요! 'Cookub'입니다</h1>}
           </div>
           {anySwitch && <LoadingBar/>}

@@ -210,6 +210,15 @@
   padding-top: 5%;
   text-align: center;
 }
+.letsProfile{
+  color:rgb(112, 112, 112);
+  cursor: pointer;
+  text-shadow : 3px 3px 3px rgb(192, 192, 192);
+  transition-duration: 0.1s;
+}
+.letsProfile:active{
+  text-shadow: none;
+}
 
 .private_logo{
   display: flex;

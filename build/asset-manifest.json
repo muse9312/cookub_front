@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/static/css/main.a363650c.css",
+    "main.js": "/static/js/main.9217750a.js",
+    "static/js/236.4e12adb1.chunk.js": "/static/js/236.4e12adb1.chunk.js",
+    "static/js/703.ff891353.chunk.js": "/static/js/703.ff891353.chunk.js",
+    "static/js/578.db99b177.chunk.js": "/static/js/578.db99b177.chunk.js",
+    "static/js/787.cda612ba.chunk.js": "/static/js/787.cda612ba.chunk.js",
+    "static/media/about3.jpg": "/static/media/about3.c2bb1173497768db1af9.jpg",
+    "static/media/testfood.jpg": "/static/media/testfood.51703e95468575da3499.jpg",
+    "static/media/about2.jpg": "/static/media/about2.18b2057211656ecc78aa.jpg",
+    "static/media/aboutImg.jpg": "/static/media/aboutImg.33d567426c8fa77260db.jpg",
+    "static/media/CookubLogo.png": "/static/media/CookubLogo.8373e2848b812d300805.png",
+    "static/media/noimg.PNG": "/static/media/noimg.f6b942d8d97cb7cc156d.PNG",
+    "index.html": "/index.html",
+    "main.a363650c.css.map": "/static/css/main.a363650c.css.map",
+    "main.9217750a.js.map": "/static/js/main.9217750a.js.map",
+    "236.4e12adb1.chunk.js.map": "/static/js/236.4e12adb1.chunk.js.map",
+    "703.ff891353.chunk.js.map": "/static/js/703.ff891353.chunk.js.map",
+    "578.db99b177.chunk.js.map": "/static/js/578.db99b177.chunk.js.map",
+    "787.cda612ba.chunk.js.map": "/static/js/787.cda612ba.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a363650c.css",
+    "static/js/main.9217750a.js"
+  ]
+}
