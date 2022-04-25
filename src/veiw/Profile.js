@@ -238,9 +238,9 @@ const Profile = () => {
                                 <Controls.ActionButton
                                     color="secondary">
                                     <CloseIcon fontSize="small" onClick={() => {
-                                        const AwardsCareer = data.awardsCareer
-                                        console.log(AwardsCareer);
-                                        const api = `http://${process.env.REACT_APP_HOST}/profile/awd/del/${AwardsCareer}`;
+                                        const awdId = data.awardsCareerId
+                                        console.log(awdId);
+                                        const api = `http://${process.env.REACT_APP_HOST}/profile/awd/del/${awdId}`;
                                         axios.delete(api)
                                             .then((res) => {
                                                 console.log(res);
@@ -302,7 +302,17 @@ const Profile = () => {
                                 </Controls.ActionButton>
                                 <Controls.ActionButton
                                     color="secondary">
-                                    <CloseIcon fontSize="small" />
+                                    <CloseIcon fontSize="small" onClick={() => {
+                                        const workCareers = data.workCareers
+                                        console.log(workCareers);
+                                        const api = `http://${process.env.REACT_APP_HOST}/profile/degree/delete/${workCareers}`;
+                                        axios.delete(api)
+                                            .then((res) => {
+                                                console.log(res);
+
+                                                window.location.reload()
+                                            })
+                                    }} />
                                 </Controls.ActionButton>
                             </TableCell>
                         </TableRow>)
@@ -356,7 +366,17 @@ const Profile = () => {
                                 </Controls.ActionButton>
                                 <Controls.ActionButton
                                     color="secondary">
-                                    <CloseIcon fontSize="small" />
+                                    <CloseIcon fontSize="small" onClick={() => {
+                                        const certId = data.certifications
+                                        console.log(certId);
+                                        const api = `http://${process.env.REACT_APP_HOST}/cert/delete/${certId}`;
+                                        axios.delete(api)
+                                            .then((res) => {
+                                                console.log(res);
+
+                                                window.location.reload()
+                                            })
+                                    }} />
                                 </Controls.ActionButton>
                             </TableCell>
                         </TableRow>)
