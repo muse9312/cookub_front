@@ -310,7 +310,6 @@ const Profile = () => {
                     }
                 </TableBody>
 
-
                 <br />
                 {WorkmodalOpen && <WorkModal setOpenModal={setWorkModalOpen} />}
 
