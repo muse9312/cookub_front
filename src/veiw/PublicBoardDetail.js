@@ -82,10 +82,12 @@ function PublicBoardDetail() {
                   {anySwitch && <LoadingBar />}
                   {recipe.title == null ? "제목이 없습니다." : recipe.title}
                 </h1>
-                <div className={style.userurl} onClick={BtnProfile}>
-                  <h2>
-                    {recipe.user === undefined ? "" : recipe.user.username}
-                  </h2>
+                <div className={style.userNameLine}>
+                  <div className={style.userurl} onClick={BtnProfile}>
+                    <h3>
+                      {recipe.user === undefined ? "" : `작성자 : ${recipe.user.username}`}
+                    </h3>
+                  </div>
                 </div>
                 <div className={style.top_cont}>
                   <div className={style.top_img}>

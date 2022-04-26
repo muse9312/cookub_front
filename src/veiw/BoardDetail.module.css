@@ -3,10 +3,18 @@
   justify-content: space-between;
   background-color: rgb(237, 238, 238);
 }
-
+.userNameLine{
+  display: flex;
+  justify-content: space-around;
+  margin-left: 20%;
+}
 .userurl{
-  text-align: right;
+  /* text-align: left; */
+  cursor: pointer;
   
+}
+.userurl:hover{
+  text-decoration: underline;
 }
 .empty{
   display: block;

@@ -210,8 +210,39 @@
   padding-top: 5%;
   text-align: center;
 }
+.letsProfile{
+  color:rgb(112, 112, 112);
+  cursor: pointer;
+  text-shadow : 3px 3px 3px rgb(192, 192, 192);
+  transition-duration: 0.1s;
+}
+.letsProfile:active{
+  text-shadow: none;
+}
 
 .private_logo{
   display: flex;
 }
 
+
+/* 유효하지 않은 키로 접속했을때 보여지는 페이지 */
+.section{
+  height: 1000px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  background-color: white;
+}
+.urlFailPage{
+  display: flex;
+  justify-content: center;
+}
+.urlFailPageImgSection{
+  display: flex;
+  justify-content: center;
+}
+.row{
+  border: 5px double rgb(135, 134, 134);
+  border-radius: 20px;
+  padding: 40px 60px;
+}
