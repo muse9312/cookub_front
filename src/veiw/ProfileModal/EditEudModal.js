@@ -8,26 +8,22 @@ import Grid from "@mui/material/Grid";
 import Cookies from 'universal-cookie';
 
 
-function AwdModal({ setOpenModal }) {
+function EditEudModal({ seteditOpenModal }, ResData) {
     const cookies = new Cookies();
 
-    function AwdData(e) {
+    function EudData(e) {
         e.preventDefault(e);
         console.log(e);
 
         let data = {
-            // 대회 이름
-            "compName": document.querySelector('[name=comp_name]').value,
+            // 최종학력
+            "education": document.querySelector('[name=Education]').value,
 
-            // 상 이름
-            "awdName": document.querySelector('[name=awd_name]').value,
+            // 전공
+            "major": document.querySelector('[name=Major]').value,
 
-
-            // 취득연도
-            "getAwdDate": document.querySelector('[name=get_awd_date]').value,
-
-            // 주최측
-            "issuedAwd": document.querySelector('[name=issued_awd]').value,
+            // 졸업연도
+            "graduation": document.querySelector('[name=Grduation]').value,
 
 
         }
@@ -36,20 +32,17 @@ function AwdModal({ setOpenModal }) {
 
 
         axios
-            .post(`http://${process.env.REACT_APP_HOST}/profile/awd/post/${cookies.get('userId')}`, JSON.stringify(data), {
+            .post(`http://${process.env.REACT_APP_HOST}/profile/degree/${cookies.get('userId')}`, JSON.stringify(data), {
                 headers: {
                     "Content-Type": `application/json`,
                 },
             })
             .then((res) => {
                 console.log(res);
-                setOpenModal(false);
+                seteditOpenModal(false);
 
-                // window.location = '/login';
+                window.location.reload()
             });
-
-
-
 
 
 
@@ -63,19 +56,19 @@ function AwdModal({ setOpenModal }) {
                     <div className="titleCloseBtn">
                         <button className="close"
                             onClick={() => {
-                                setOpenModal(false);
+                                seteditOpenModal(false);
                             }}
                         >
                             X
                         </button>
                     </div>
                     <div className="title">
-                        <h1>Add education</h1>
+                        <h1>Edit education</h1>
                     </div>
                     <div className="body">
                         <p>The next page looks amazing. Hope you want to go there!</p>
                     </div>
-                    <form onSubmit={AwdData}>
+                    <form onSubmit={EudData}>
                         <Box
                             sx={{
                                 display: 'flex',
@@ -85,53 +78,40 @@ function AwdModal({ setOpenModal }) {
 
 
                                 <Grid>
-                                    {/* 대회이름 */}
+                                    {/* 최종학력 */}
                                     <TextField
-                                        label="Name of the competition*"
-                                        id="Name of the competition"
-                                        name="comp_name"
+                                        label="Education*"
+                                        id="Education"
+                                        name="Education"
+                                        sx={{
+
+                                            m: 1,
+                                            width: '80ch'
+                                        }}
+
+                                    />
+                                    {/* 전공 */}
+                                    <TextField
+                                        label="Major*"
+                                        id="Major"
+                                        name="Major"
                                         sx={{
 
                                             m: 1,
                                             width: '80ch'
                                         }}
                                     />
-                                    {/* 상 이름 */}
-                                    <TextField
-                                        label="Award Name*"
-                                        id="Award Name"
-                                        name="awd_name"
-                                        sx={{
-
-                                            m: 1,
-                                            width: '80ch'
-                                        }}
-                                    />
-                                    {/* 주최자 */}
-                                    <TextField
-                                        label="Organizers*"
-                                        id="Organizers"
-                                        name="issued_awd"
-                                        sx={{
-
-                                            m: 1,
-                                            width: '80ch'
-                                        }}
-                                    />
-                                    {/* 취득연도 */}
+                                    {/* 졸업연도 */}
                                     <TextField
                                         id="standard-helperText"
                                         type="date"
-                                        name="get_awd_date"
-                                        helperText="Acquisition date"
+                                        name="Grduation"
+                                        helperText="Grduation"
 
                                         sx={{
                                             m: 1,
                                             width: '80ch'
-                                        }}
-                                    />
-
-
+                                        }} />
 
                                 </Grid>
 
@@ -142,7 +122,7 @@ function AwdModal({ setOpenModal }) {
                         <div className="footer">
                             <button
                                 onClick={() => {
-                                    setOpenModal(false);
+                                    seteditOpenModal(false);
                                 }}
                                 id="cancelBtn"
                             >
@@ -162,4 +142,4 @@ function AwdModal({ setOpenModal }) {
     );
 }
 
-export default AwdModal;
+export default EditEudModal;

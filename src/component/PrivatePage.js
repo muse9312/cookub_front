@@ -64,7 +64,6 @@ const PrivatePage = ()=>{
             </a>
             {userName
             ?<div className={style.private_header_title} onClick={BtnProfile}><h1 className={style.letsProfile}>{`${userName}님의 레시피 저장소입니다.`}</h1></div>
-            // ?<h1 className={ style.private_header_title}>{`${userName}님의 레시피 저장소 입니다.`}</h1>
             :<h1 className={ style.private_header_title}>안녕하세요! 'Cookub'입니다</h1>}
           </div>
           {anySwitch && <LoadingBar/>}
@@ -109,7 +108,21 @@ const PrivatePage = ()=>{
         )
         :( 
           //키가 잘못됐거나 기간이 유효하지 않을때 보여줄 UI
-          <h1>유효하지 않은 키로 접속 하셨습니다.</h1>)
+          <div className={style.section}>
+            <div className={style.urlFailPage}>
+              <div className={style.row}>
+                <div className={style.urlFailPageImgSection}>
+                  <a className="imgbtn" href={'/'}>
+                    <img src={Logo} alt="COOKUB"/>
+                  </a>
+                </div>
+                <h2>&nbsp;&nbsp; 유효하지 않은 키로 접속 하셨습니다!</h2>
+                <h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  접속 URL을 확인해주세요!</h2>
+              </div>
+            </div>
+          </div>
+          )
       }
     </>
   );
