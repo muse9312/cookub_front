@@ -1,7 +1,12 @@
 
 import React, { useEffect, useState } from "react";
 import Cookies from 'universal-cookie'
-import style from './BoardDetail.module.css';
+
+// ================================  Data  ====================================
+import { Paper, makeStyles, TableBody, TableRow, TableCell, Toolbar, InputAdornment } from '@material-ui/core';
+import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
+import CloseIcon from '@material-ui/icons/Close';
+import Alert from '@mui/material/Alert';
 import Box from '@mui/material/Box';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import EmailIcon from '@mui/icons-material/Email';
@@ -13,8 +18,10 @@ import Typography from '@mui/material/Typography';
 import EditIcon from '@mui/icons-material/Edit';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
+import Controls from "../component/controls/Controls"
 import '../assets/css/Profile.css'
 import EudModal from './ProfileModal/EudModal'
+import EditEudModal from './ProfileModal/EditEudModal'
 import WorkModal from './ProfileModal/WorkModal'
 import AwdModal from './ProfileModal/AwdModal'
 import CerModal from './ProfileModal/CerModal'
@@ -30,67 +37,36 @@ import Navigation from "../component/Navigation";
 
 import axios from 'axios'
 
-
-// function Modal({ setOpenModal }) {
-//     return (
-//         <div className="modalBackground">
-//             <div className="modalContainer">
-//                 <div className="titleCloseBtn">
-//                     <button
-//                         onClick={() => {
-//                             setOpenModal(false);
-//                         }}
-//                     >
-//                         X
-//                     </button>
-//                 </div>
-//                 <div className="title">
-//                     <h1>Are You Sure You Want to Continue?</h1>
-//                 </div>
-//                 <div className="body">
-//                     <p>The next page looks amazing. Hope you want to go there!</p>
-//                 </div>
-//                 <div className="footer">
-//                     <button
-//                         onClick={() => {
-//                             setOpenModal(false);
-//                         }}
-//                         id="cancelBtn"
-//                     >
-//                         Cancel
-//                     </button>
-//                     <button>Continue</button>
-//                 </div>
-//             </div>
-//         </div>
-//     );
-// }
-
-
 const PublicProfile = () => {
 
     const src = "https://s3-bucket-react-file-upload-test-5jo.s3.us-east-2.amazonaws.com/upload/"
 
     const cookies = new Cookies();
-    const token = cookies.get('token');
 
-    const [recipe, setRecipe] = useState([]);
     const [EudmodalOpen, setEudModalOpen] = useState(false);
+    const [editEudmodalOpen, seteditEudModalOpen] = useState(false);
     const [CermodalOpen, setCerModalOpen] = useState(false);
     const [AwdmodalOpen, setAwdModalOpen] = useState(false);
     const [WorkmodalOpen, setWorkModalOpen] = useState(false);
 
-    const [dataTest, setDataTest] = useState([]);
+
+
+    const [ResData, setResData] = useState([]);
+
+    function EditProfile(e) {
+        e.preventDefault()
+        window.location.href = "/userinfo"
+    }
 
     useEffect(() => {
-        const userId = window.sessionStorage.getItem("id");
+        const userId = cookies.get('userId')
         const api = `http://${process.env.REACT_APP_HOST}/profile/${userId}`;
         axios.get(api)
             .then((res) => {
                 console.log(res);
                 console.log(res.data);
-                console.log(res.data[0][0]);
-                setDataTest(res.data)
+                setResData(res.data)
+
             })
 
 
@@ -99,9 +75,6 @@ const PublicProfile = () => {
 
 
     }, []);
-
-
-
 
 
     return (
@@ -114,6 +87,22 @@ const PublicProfile = () => {
                     <p className="subtitle">Happy Cooking!!</p>
                 </div>
 
+
+
+
+
+
+                {/* <div className="iconPosition">
+                    <Box sx={{ '& > :not(style)': { m: 1 } }}>
+                        <Fab size="small" color="secondary" aria-label="edit">
+                            <EditIcon onClick={EditProfile} />
+                        </Fab>
+
+                    </Box>
+                </div> */}
+
+
+
                 {/* 프로필 이미지 */}
                 <div className="proBox">
                     <img className="profilePic" src={src + cookies.get("profile")} alt="Black dog with red scarf" />
@@ -122,26 +111,24 @@ const PublicProfile = () => {
                     <div className="profileInfo">
 
                         <Typography variant="h4" component="div">
-                            <AccountCircleIcon sx={{ fontSize: 30 }} />
-                            {recipe.user === undefined ? "" : recipe.user.username}
-
+                            <AccountCircleIcon sx={{ fontSize: 30 }} />  {ResData.username}
                         </Typography>
 
                         <Typography variant="h8" component="div">
-                            <EmailIcon sx={{ fontSize: 20 }} />&nbsp; {cookies.get('email')}
+                            <EmailIcon sx={{ fontSize: 20 }} />&nbsp; {ResData.email}
                         </Typography>
 
 
                         <Typography variant="h8" component="div">
-                            <ApartmentIcon sx={{ fontSize: 20 }} />&nbsp; {cookies.get('field')}
+                            <ApartmentIcon sx={{ fontSize: 20 }} />&nbsp; {ResData.field}
                         </Typography>
 
                         <Typography variant="h8" component="div">
-                            <ApartmentIcon sx={{ fontSize: 20 }} />&nbsp; {cookies.get('workPlace')}
+                            <ApartmentIcon sx={{ fontSize: 20 }} />&nbsp; {ResData.workPlace}
                         </Typography>
 
                         <Typography variant="h8" component="div">
-                            <PhoneAndroidIcon sx={{ fontSize: 20 }} />&nbsp; {cookies.get('tel')}
+                            <PhoneAndroidIcon sx={{ fontSize: 20 }} />&nbsp; {ResData.tel}
                         </Typography>
 
 
@@ -151,17 +138,9 @@ const PublicProfile = () => {
                 <br />
                 <hr />
 
-                <Stack direction="row" spacing={2}>
-                    <Button variant="contained">???</Button>
-                    <Button variant="contained" href="#contained-buttons">
-                        ???
-                    </Button>
-                    <Button variant="contained" href="#contained-buttons">
-                        Url
-                    </Button>
-                </Stack>
 
-                <br />
+
+
 
 
 
@@ -175,35 +154,21 @@ const PublicProfile = () => {
                 <Typography variant="h4" component="div">
                     Education
                 </Typography>
+                <br />
 
-                {/* {result} */}
-                {/* <div className="dataMap">
-                    {dataTest.map((data, index) => (
-                        <div className="dataMap">
-                            <h2>{data.title == null ? "제목이 없습니다." : data.title}</h2>
-                            {data[index].education}
-                            <br />
-                            {data[index].major}
-                            <br />
-                            {data[index].graduation}
+                <TableBody>
+                    {
+                        ResData.degrees && ResData.degrees.map(data =>
+                        (<TableRow  >
+                            <TableCell size="medium" >{data.education}</TableCell>
+                            <TableCell>{data.major}</TableCell>
+                            <TableCell>{data.graduation}</TableCell>
+                        </TableRow>)
+                        )
+                    }
 
-                        </div>
-                    ))}
+                </TableBody>
 
-                </div> */}
-
-
-                {EudmodalOpen && <EudModal setOpenModal={setEudModalOpen} />}
-
-                <div className="iconPosition">
-                    <Box sx={{ '& > :not(style)': { m: 1 } }}>
-                        <Fab size="small" color="primary" aria-label="add">
-                            <AddIcon onClick={setEudModalOpen} />
-
-
-                        </Fab>
-                    </Box>
-                </div>
 
 
 
@@ -217,24 +182,27 @@ const PublicProfile = () => {
                 <Typography variant="h4" component="div">
                     AwardsCareer
                 </Typography>
+                <hr />
                 <br />
+
+                <TableBody>
+                    {
+                        ResData.awardsCareers && ResData.awardsCareers.map(data =>
+                        (<TableRow  >
+                            <TableCell size="medium" >{data.compName}</TableCell>
+                            <TableCell>{data.issuedAwd}</TableCell>
+                            <TableCell>{data.awdName}</TableCell>
+                            <TableCell>{data.getAwdDate}</TableCell>
+
+
+                        </TableRow>)
+                        )
+                    }
+                </TableBody>
+
+
                 <br />
 
-
-
-                {AwdmodalOpen && <AwdModal setOpenModal={setAwdModalOpen} />}
-
-                <div className="iconPosition">
-                    <Box sx={{ '& > :not(style)': { m: 1 } }}>
-                        <Fab size="small" color="primary" aria-label="add">
-                            <AddIcon onClick={setAwdModalOpen} />
-
-
-                        </Fab>
-
-
-                    </Box>
-                </div>
 
 
 
@@ -248,24 +216,24 @@ const PublicProfile = () => {
                 <Typography variant="h4" component="div">
                     WorkCareer
                 </Typography>
+                <hr />
                 <br />
+
+                <TableBody>
+                    {
+                        ResData.workCareers && ResData.workCareers.map(data =>
+                        (<TableRow  >
+                            <TableCell size="medium" >{data.compName}</TableCell>
+                            <TableCell>{data.jobPosition}</TableCell>
+                            <TableCell>{data.location}</TableCell>
+                            <TableCell>{data.period}</TableCell>
+                        </TableRow>)
+                        )
+                    }
+                </TableBody>
+
                 <br />
 
-
-
-                {WorkmodalOpen && <WorkModal setOpenModal={setWorkModalOpen} />}
-
-                <div className="iconPosition">
-                    <Box sx={{ '& > :not(style)': { m: 1 } }}>
-                        <Fab size="small" color="primary" aria-label="add">
-                            <AddIcon onClick={setWorkModalOpen} />
-
-
-                        </Fab>
-
-
-                    </Box>
-                </div>
 
 
 
@@ -279,24 +247,25 @@ const PublicProfile = () => {
                 <Typography variant="h4" component="div">
                     Certification
                 </Typography>
+                <hr />
                 <br />
+
+                <TableBody>
+                    {
+                        ResData.certifications && ResData.certifications.map(data =>
+                        (<TableRow  >
+                            <TableCell size="medium" >{data.certName}</TableCell>
+                            <TableCell>{data.issuedCert}</TableCell>
+                            <TableCell>{data.getCertDate}</TableCell>
+
+                        </TableRow>)
+                        )
+                    }
+                </TableBody>
+
+
                 <br />
 
-
-
-                {CermodalOpen && <CerModal setOpenModal={setCerModalOpen} />}
-
-                <div className="iconPosition">
-                    <Box sx={{ '& > :not(style)': { m: 1 } }}>
-                        <Fab size="small" color="primary" aria-label="add">
-                            <AddIcon onClick={setCerModalOpen} />
-
-
-                        </Fab>
-
-
-                    </Box>
-                </div>
 
 
 
