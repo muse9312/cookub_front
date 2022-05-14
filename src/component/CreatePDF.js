@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import Logo from '../assets/img/CookubLogo.png';
 import Pdf from "react-to-pdf";

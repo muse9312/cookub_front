@@ -28,6 +28,7 @@ function Board() {
       })
   }, []);
 
+
   const string_cuting = (value) => {
     let string = '';
     if (value == null) {

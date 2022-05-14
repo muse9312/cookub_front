@@ -66,7 +66,7 @@ const PrivateURL = ()=>{
               <div className={style.textAndBtn}>
                 <div className={style.cardText}>
                   <h4>{`사용처 : ${urlData.purpose}`}</h4>
-                  <h5>{`발급됩 URL 주소 : http://localhost:3000/private/${urlData.privateKey}`}</h5>
+                  <h5>{`발급됩 URL 주소 : http://ec2-34-207-244-32.compute-1.amazonaws.com:3000/private/${urlData.privateKey}`}</h5>
                   <h5>{`URL 주소 유효기간 : ${dateChange(urlData.lastDate)} 까지 유효`}</h5>
                 </div>
                 <button className={style.cardBtn} 

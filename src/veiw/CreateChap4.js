@@ -27,10 +27,8 @@ function CreateChap4({ closeModal, setCreateMod, chapter4List, chapter1List, cha
 
   const ACCESS_KEY = process.env.REACT_APP_AWS_ACCESS_KEY;
   const SECRET_ACCESS_KEY = process.env.REACT_APP_AWS_SECRET_ACCESS_KEY;
-  // const RESION = 'us-east-2';
-  // const S3_BUCKET = 's3-bucket-react-file-upload-test-5jo';
   const RESION = 'us-east-2';
-  const S3_BUCKET = '5jo-test';
+  const S3_BUCKET = 's3-bucket-react-file-upload-test-5jo';
 
 
   AWS.config.update({
@@ -84,7 +82,6 @@ function CreateChap4({ closeModal, setCreateMod, chapter4List, chapter1List, cha
         sessionData[i].picture = newFileName;  //기존에 파일 이름이 있는 새로운 파일 이름을 넣기
       }
     })
-    // sessionData[i].picture = randomName + "_"+ file.name;
 
     window.sessionStorage.setItem("cookMethods", JSON.stringify(sessionData))
 
@@ -276,8 +273,6 @@ function CreateChap4({ closeModal, setCreateMod, chapter4List, chapter1List, cha
               closeModal(false)
               console.log(val);
             })
-
-
 
         }}>완료</button>
       </div>

@@ -1,7 +1,7 @@
 import React from "react";
-import image from "../assets/img/aboutImg.jpg";
-import image2 from "../assets/img/about2.jpg";
-import image3 from "../assets/img/about3.jpg";
+import image from "../assets/img/aboutChapter1.JPG";
+import image2 from "../assets/img/aboutChapter2.JPG";
+import image3 from "../assets/img/aboutChapter3.JPG";
 import style from "../assets/css/About.module.css";
 import Navigation from '../component/Navigation'
 
